@@ -1,0 +1,65 @@
+version: '3.3'
+services:
+  signal_database:
+    image: postgres:11
+    container_name: postgres_database
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_MULTIPLE_DATABASES=signal'
+      - 'PGDATA=/var/lib/postgresql/data/pgdata'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres_database:/var/lib/postgresql/data
+  dynamo_db:
+    image: amazon/dynamodb-local:1.15.0
+    container_name: dynamo_db
+    ports:
+      - '8000:8000'
+  redis_cluster:
+    image: grokzen/redis-cluster
+    container_name: redis_cluster
+    # ports:
+    #   - '7000-7050:7000-7050'
+    #   - '5000-5010:5000-5010'
+    network_mode: host
+  # redis_main:
+  #   image: redis:5
+  #   container_name: redis_main
+  #   command: redis-server --port 6379
+  #   ports: 
+  #     - '6379:6379'
+  #   volumes:
+  #     - ./redis_replication:/data
+    #network_mode: host
+  # redis_cluster-0:
+  #   image: bitnami/redis-cluster:5.0.12
+  #   container_name: redis_cluster-0
+  #   environment:
+  #     - 'ALLOW_EMPTY_PASSWORD=yes'
+  #     - 'REDIS_PORT=6379'
+  #     - 'REDIS_NODES=redis_cluster-0 redis_cluster-1'
+  #   volumes:
+  #     - ./redis_cluster-0:/bitnami
+  #   ports: 
+  #     - '6379:6379'
+    #network_mode: host
+  # redis_cluster-1:
+  #   image: bitnami/redis-cluster:5.0.12
+  #   container_name: redis_cluster-1
+  #   environment:
+  #     - 'ALLOW_EMPTY_PASSWORD=yes'
+  #     - 'REDIS_PORT=6380'
+  #     - 'REDIS_NODES=redis_cluster-0 redis_cluster-1'
+  #   volumes:
+  #     - ./redis_cluster-1:/bitnami
+  #   ports: 
+  #     - '6380:6380'
+    #network_mode: host
+  sqs:
+    image: roribio16/alpine-sqs:1.2.0
+    container_name: sqs
+    ports:
+      - '9324:9324'
+      - '9325:9325'
