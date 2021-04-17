@@ -1,0 +1,209 @@
+abuseDatabase:
+  driverClass: org.postgresql.Driver
+  user:        postgres # change to your psql username
+  password:    postgres # change to your psql password
+  url:         jdbc:postgresql://127.0.0.1:5432/signal #change to your psql url, port, and database name
+
+accountDatabaseCrawler:
+  chunkSize: 1000 # optional
+  chunkIntervalMs : 8000 # optional
+
+accountsDatabase:
+  driverClass: org.postgresql.Driver
+  user:        postgres
+  password:    postgres
+  url:         jdbc:postgresql://127.0.0.1:5432/signal
+
+apn: # Apple Push Notifications configuration
+  sandbox: true
+  bundleId: test
+  keyId: test
+  teamId: test
+  signingKey: test
+
+appConfig:
+  application: test
+  environment: test
+  configuration: test
+
+awsAttachments:
+  accessKey: Q3AM3UQ867SPQQA43P2F
+  accessSecret: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+  bucket: signal
+  region: us-east-1
+
+backupService:
+  userAuthenticationTokenSharedSecret: test
+  uri: redis://127.0.0.1:7000/
+  backupCaCertificate: test
+
+cacheCluster:
+  urls:
+    - redis://127.0.0.1:7000
+
+cdn:
+  accessKey: Q3AM3UQ867SPQQA43P2F
+  accessSecret: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+  bucket: signal
+  region: us-east-1
+
+clientPresenceCluster:
+  urls:
+    - redis://127.0.0.1:7000
+
+directory:
+  client: # Configuration for interfacing with Contact Discovery Service cluster
+    userAuthenticationTokenSharedSecret: ad2e341ca076657e34e4e29e3bfa6a86 # hex-encoded secret shared with CDS used to generate auth tokens for Signal users
+    userAuthenticationTokenUserIdSecret: e9c3ed33d99073f48c7acc015f9821e6 # hex-encoded secret shared among Signal-Servers to obscure user phone numbers from CDS
+  sqs:
+    accessKey: notValidKey # AWS SQS accessKey
+    accessSecret: notValidSecret  # AWS SQS accessSecret
+    queueUrls:
+      - http://localhost:9324 # AWS SQS queue url
+  server:
+    -
+      replicationName: test
+      replicationUrl: http://127.0.0.1:9090 # CDS replication endpoint base url
+      replicationPassword: password # CDS replication endpoint password
+      replicationCaCertificate: |
+        -----BEGIN CERTIFICATE-----
+        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
+        -----END CERTIFICATE-----
+      # CDS replication endpoint TLS certificate trust root
+
+gcm: # GCM Configuration
+  senderId: 874271879526
+  apiKey: AAAAy46qMWY:APA91bEe3gCLQIXRAXs8L6YITyt_2AP-d3k96s6j7-BQOqdvt03uad0fUivTZnvIMHWNrmRsnVFibjCB7QzlJ5iVKk9mQ9S_INx6MY4DxEnpz9SIcGOeaEnN09OV3tx6F9ZDMLRWfakB
+
+gcpAttachments: # GCP Storage configuration
+  domain: dummy.com
+  email: dummy@dummy.com
+  maxSizeInBytes: 1000000
+  pathPrefix: /
+  rsaSigningKey: "-----BEGIN RSA PRIVATE KEY-----\nMIICXQIBAAKBgQDwhYt8JjcT51v39xLoQmD7B6XCK5uF5Io0lBZjXN8y3z0NWN5+\nNZeujJ8quEG1B+8f81M65xEXTPIl1H9+XFZ2hhufYY6QPSq7sywxqjHgZvbk4eSv\nsxoB2OOngFCbBlrw6yJMprwIAgujX1RJB/VVuWQ8sMcc2zGIYLCdtzi2nQIDAQAB\nAoGBAMr1hdx/St7KzjqSDSxcRwXNUDxnG9eCIHV5uOKjzdxZsGUA5s7NXm92TiF4\nVknypf/qDgOYVD27OmJdzC/Or021uQzcagGixnTfLnc+Na/U6y8mL85h9Ky1cJsb\nWeDr3/CR7oYs1G+SHEZuQ7CnYl/NcTTv3x88QK+q3Ue3QUWpAkEA/jqpEfnS3CAE\nmSc55utpoRMwCHNGzt1ed8WWiuS+6XaBZeoLT3Dud9/uvDSnBZlrCSrr5k6nrQyw\n2FAn5nCYdwJBAPIycPw3Nm+3PDWQ1u4Np7WXGnPPi4ccyWcJYXpYxvyWFxhrwidx\noXnlOrG5KIIXJnOFqEuAp8nsdaNVG16DAosCQCgcUTiI1f/s/Uy8p6ILWmsTf+yV\nY4KX4qO7BPl9BbIIBHpz5rzt8HHxXtVK6V80yXJ01ytLFaFz8yLt4p20/hkCQQCQ\naIr9l14Z1kNMHQRKBFJO772R99nVwdBEY09/x5c927ABm560Lgh9ybPpa+E/T9ZZ\nYwQpoJhqyVaLAJ/FBpBpAkBQe1Av9I3bHXip3GmaIZqzKlKuW0VcO+3zJi5BBZHJ\n3sOCs8H491WHJOEuEkfOo3LK5q4aoNacLvyiUi0r6Iwl\n-----END RSA PRIVATE KEY-----\n"
+
+keysDynamoDb:
+  region: us-east-1
+  tableName: signal
+
+messageCache:
+  cluster:
+    urls:
+      - redis://127.0.0.1:7000
+
+messageDynamoDb:
+  region: us-east-1
+  tableName: signal
+
+metricsCluster:
+  urls:
+    - redis://127.0.0.1:7000
+
+micrometer:
+  uri: proxy://localhost:2878
+  
+paymentsService:
+  userAuthenticationTokenSharedSecret: test
+  fixerApiKey: test
+  paymentCurrencies:
+    - USD
+
+pubsub:
+  url: redis://127.0.0.1:7000/ # change to your redis server
+  replicaUrls:
+    - redis://127.0.0.1:7000/
+
+push:
+  queueSize: 200 # Size of push pending queue
+
+pushSchedulerCluster:
+  urls:
+    - redis://127.0.0.1:7000
+
+recaptcha:
+  secret: test
+
+remoteConfig:
+  authorizedTokens:
+    - dummy
+  globalConfig: 
+    dummy: dummy # keys and values that are given to clients on GET /v1/config
+
+server: # server configuration
+  applicationConnectors:
+    - type: http
+      port: 8080 # your signal server will run on this port
+  adminConnectors:
+    - type: http
+      port: 8081 # your signal server admin will run on this port
+
+storageService:
+  userAuthenticationTokenSharedSecret: test
+  uri: redis://127.0.0.1:7000/
+  storageCaCertificate: test
+
+turn:
+  secret: secret# TURN server secret
+  uris:
+    - stun:signal.madecanggih.dev:3478
+    - stun:signal.madecanggih.dev:5349
+    - turn:signal.madecanggih.dev:3478?transport=udp
+    - turn:signal.madecanggih.dev:5349?transport=udp
+
+twilio:
+  accountId: ACc16ed4b4b149614fc3cb9da0146c65bb
+  accountToken: 709cc3e93e5be6fbdec1b8e4fa6cc846
+  nanpaMessagingServiceSid: test # Twilio SID for the messaging service to use for NANPA.
+  messagingServiceSid: test # Twilio SID for the message service to use for non-NANPA.
+  localDomain: signal.madecanggih.dev # Domain Twilio can connect back to for calls. Should be domain of your service.
+  iosVerificationText: "verification code is - %s" # Text to use for the verification message on iOS. Will be passed to String.format with the verification code as argument 1.
+  androidNgVerificationText: "verification code is - %s" # Text to use for the verification message on android-ng client types. Will be passed to String.format with the verification code as argument 1.
+  android202001VerificationText: "verification code is - %s" # Text to use for the verification message on android-2020-01 client types. Will be passed to String.format with the verification code as argument 1.
+  android202103VerificationText: "verification code is - %s" # Text to use for the verification message on android-2021-03 client types. Will be passed to String.format with the verification code as argument 1.
+  genericVerificationText: "verification code is - %s" # Text to use when the client type is unrecognized. Will be passed to String.format with the verification code as argument 1.
+
+unidentifiedDelivery:
+  certificate: CiUIARIhBbtuVWHuuuPtttdWYDe27oCiY9WmptlQOex/v7g6MV0kEkCkJgjFrzFQjJhkpylTUi/uuW1ygtIsKi7R2VaUaTC8KnhPHjODAyydqD3noiw0DLRB0vNfpr08h4AQHGCKBkiK
+  privateKey: kHuIcZl6Y9MN5rM541Ordh5xRzWI3wXdaP2S8pY3wlI=
+  expiresDays: 365
+
+voiceVerification:
+  url: test
+  locales:
+    - en
+
+zkConfig: # zkgroup config, run using your build jar
+  serverSecret: AHtejEdB54hNLVzy3zxN+jEZv+lw8QSH9Pu5+VVFnC8K77UolVU4C1HrL/vyXOcd3Ym1CVmjSsAxuglQWUr/gAYQy87oNoM80MKns9didr9rrJ6tDoVYW41AbQpom5R2agxqksupelmP6Ysvrv5SO46smkhQUhS5eXSLB0e9oIQHzezbNs2UQGLM5ZxCR0MgUyQRATzdQ6MDb7fltPMSFwaOGy6xHyhuKUxDwv/D8A0DjgUZbku0pvXXPmbDrGkHAR7dJHyZ9K9v3StpYnyPIIgQV2tr/Hp/4DTuflfBFnMB00YE1y7i65lEtc2Xv0Uv47rxRnX/yuWW8ylD/eAKJQJhw1bTucehHkSq1FCox2wnFiwZAdRrgdW1nuT3mlF5DVY49CIYylT/OmT4gJib3JQrVfXpmQuDvTOAqOrlA90AdEAa7aQd7GNZDeQ27MH8yDkBKHHN/ONK7yo7wRD3KxMfje8/zDadiMuXnyg+5CMu2CI+b2hAumCeFurTSXmGBfvSjxzsg15vT42l3EhDTwfOmX+/V87RUNXt6sPjD8AFaBZcQ4KtASdtn7cYvct9i7yQ2DNbqcmwzxfRYnF+IABUt4y1PCgx9nSZMsCq2BCEbZm2QJDNDO/q+Tq27wBuCkWP4zi0iugaeGQEJvzmFsuOfT5hs2nHC/GNLOnwLZEJYrnmW+O0qKjXWMsb48k/QNfyor2SARtwNAlsSWVIoQtj1s0gaca8DAJyaMMjEbmSlnscoR7UJEht88NPNF3TAVif3geKXI8E0qo1gWupldEmjIBlZsqpPTNcgPfi3K0ITR34/Qg8MbDBDNIj48DN6oBseMxVLalmn/plDzuAJANat1Z79pgsd2fTdYvhIof6VkEHXYUn1XWYmmRvshMuABKutveHsOnXwGL6ICfn42VeFky3N+HD1jIUs7fTXClOURXE26YDb25c5f7lLg8SFQ9nXUCDqOrmmVmvt/Y4yg+Q7A2RlJVrl+1bR67P/bwBJijXLE4Ib5bedpqG9FV0NQ # java -jar TextSecure.jar zkparams
+  serverPublic: AFY49CIYylT/OmT4gJib3JQrVfXpmQuDvTOAqOrlA90AdEAa7aQd7GNZDeQ27MH8yDkBKHHN/ONK7yo7wRD3KxNat1Z79pgsd2fTdYvhIof6VkEHXYUn1XWYmmRvshMuABKutveHsOnXwGL6ICfn42VeFky3N+HD1jIUs7fTXClOkOwNkZSVa5ftW0euz/28ASYo1yxOCG+W3naahvRVdDU # java -jar TextSecure.jar zkparams
+  enabled: true
