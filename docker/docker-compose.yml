@@ -18,45 +18,13 @@ services:
     ports:
       - '8000:8000'
   redis_cluster:
-    image: grokzen/redis-cluster
+    image: grokzen/redis-cluster:latest
     container_name: redis_cluster
-    # ports:
-    #   - '7000-7050:7000-7050'
-    #   - '5000-5010:5000-5010'
-    network_mode: host
-  # redis_main:
-  #   image: redis:5
-  #   container_name: redis_main
-  #   command: redis-server --port 6379
-  #   ports: 
-  #     - '6379:6379'
-  #   volumes:
-  #     - ./redis_replication:/data
-    #network_mode: host
-  # redis_cluster-0:
-  #   image: bitnami/redis-cluster:5.0.12
-  #   container_name: redis_cluster-0
-  #   environment:
-  #     - 'ALLOW_EMPTY_PASSWORD=yes'
-  #     - 'REDIS_PORT=6379'
-  #     - 'REDIS_NODES=redis_cluster-0 redis_cluster-1'
-  #   volumes:
-  #     - ./redis_cluster-0:/bitnami
-  #   ports: 
-  #     - '6379:6379'
-    #network_mode: host
-  # redis_cluster-1:
-  #   image: bitnami/redis-cluster:5.0.12
-  #   container_name: redis_cluster-1
-  #   environment:
-  #     - 'ALLOW_EMPTY_PASSWORD=yes'
-  #     - 'REDIS_PORT=6380'
-  #     - 'REDIS_NODES=redis_cluster-0 redis_cluster-1'
-  #   volumes:
-  #     - ./redis_cluster-1:/bitnami
-  #   ports: 
-  #     - '6380:6380'
-    #network_mode: host
+    environment: 
+      - 'IP=0.0.0.0'
+    ports:
+      - '7000-7050:7000-7050'
+      - '5000-5010:5000-5010'
   sqs:
     image: roribio16/alpine-sqs:1.2.0
     container_name: sqs
